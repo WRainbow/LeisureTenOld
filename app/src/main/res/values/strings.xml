@@ -14,6 +14,8 @@
     <string name="temperament">气 质</string>
     <string name="pullLoadMore">点击加载更多</string>
     <string name="dropFresh">下拉刷新</string>
+    <string name="loadFailed">哎呀，数据跑丢了……</string>
+    <string name="refreshFailed">请检查网络后再重试刷新</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

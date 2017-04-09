@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.main_happy_cv_item2:
                 intent.putExtra("classificationName", mHappyRectIvItem2.getImgText());
+                startActivity(intent);
                 break;
             case R.id.main_other_cv_item1:
                 intent.putExtra("classificationName", mOtherRectIvItem1.getImgText());

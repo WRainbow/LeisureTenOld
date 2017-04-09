@@ -23,4 +23,30 @@
         android:layout_marginTop="10dp">
 
     </FrameLayout>
+    <TextView
+        android:id="@+id/content_refresh_failed_prompt_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/content_tb"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorLight400"
+        android:text="@string/refreshFailed"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/content_loadmore_failed_prompt_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorLight400"
+        android:text="@string/refreshFailed"
+        android:visibility="gone"/>
 </RelativeLayout>

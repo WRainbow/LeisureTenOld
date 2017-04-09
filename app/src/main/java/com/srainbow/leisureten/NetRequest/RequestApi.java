@@ -2,6 +2,7 @@ package com.srainbow.leisureten.NetRequest;
 
 
 import com.srainbow.leisureten.data.APIData.FunnyPicData;
+import com.srainbow.leisureten.data.APIData.JokeData;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,4 +14,6 @@ import rx.Observable;
 public interface RequestApi {
     @GET("joke/randJoke.php?type=pic")
     Observable<FunnyPicData> getFunnyPicData(@Query("key") String key);
+    @GET("joke/randJoke.php?type=")
+    Observable<JokeData> getJokeData(@Query("key")String key);
 }

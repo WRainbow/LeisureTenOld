@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
         android:textSize="15sp"
         android:text="@string/pullLoadMore" />
 </RelativeLayout>

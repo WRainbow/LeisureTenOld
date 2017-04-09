@@ -33,6 +33,14 @@ public class RetrofitThing {
                 .subscribe(subscriber);
     }
 
+    public void onJokeResponse(SubscriberByTag subscriber){
+        getRequestApi().getJokeData("b3c10341bc734b752fa7cb47b1fb0641")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
     //在访问HttpMethods时创建单例
     private static class SingletonHolder{
         private static final RetrofitThing INSTANCE = new RetrofitThing();

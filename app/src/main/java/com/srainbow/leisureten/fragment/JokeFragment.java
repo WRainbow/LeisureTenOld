@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -19,11 +18,13 @@ import com.srainbow.leisureten.NetRequest.RetrofitThing;
 import com.srainbow.leisureten.NetRequest.SubscriberByTag;
 import com.srainbow.leisureten.R;
 import com.srainbow.leisureten.activity.ContentShowActivity;
+import com.srainbow.leisureten.adapter.JokeRVAdapter;
 import com.srainbow.leisureten.adapter.PictureRVAdapter;
-import com.srainbow.leisureten.custom.Listener.EndlessOnScrollListener;
 import com.srainbow.leisureten.custom.interfaces.OnTVInRvClickToDoListener;
 import com.srainbow.leisureten.data.APIData.FunnyPicData;
 import com.srainbow.leisureten.data.APIData.FunnyPicDetail;
+import com.srainbow.leisureten.data.APIData.JokeData;
+import com.srainbow.leisureten.data.APIData.JokeDetail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +34,13 @@ import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PictureFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
-public class PictureFragment extends Fragment implements SubscriberByTag.onSubscriberByTagListener,
+public class JokeFragment extends Fragment implements SubscriberByTag.onSubscriberByTagListener,
         OnTVInRvClickToDoListener, View.OnClickListener{
 
     private LinearLayoutManager linearLayoutManager;
-    private PictureRVAdapter mPictureRVAdapter;
-    private List<FunnyPicDetail> funnyPicDetails;
+    private JokeRVAdapter mJokeRVAdapter;
+    private List<JokeDetail> jokeDetails;
 
     @Bind(R.id.picfragment_content_rv)
     RecyclerView mRVFunnyPicture;
@@ -50,17 +49,16 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
     @Bind(R.id.picfragment_load_failed_llayout)
     LinearLayout mLlayoutLoadFailed;
 
-    public PictureFragment(){}
+    public JokeFragment() {}
 
-    public static PictureFragment newInstance() {
-        return new PictureFragment();
+    public static JokeFragment newInstance(){
+        return new JokeFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,12 +67,11 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
         ButterKnife.bind(this, view);
         initVars();
         initViews();
-
         return view;
     }
 
     public void initVars(){
-        funnyPicDetails = new ArrayList<>();
+        jokeDetails = new ArrayList<>();
         loadDataByTag("init");
     }
 
@@ -96,14 +93,14 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
 
     public void initRecyclerView(){
         linearLayoutManager = new LinearLayoutManager(getActivity());
-        mPictureRVAdapter = new PictureRVAdapter(getActivity(), funnyPicDetails);
-        mPictureRVAdapter.setOnItemClickListener(this);
-        mRVFunnyPicture.setAdapter(mPictureRVAdapter);
+        mJokeRVAdapter = new JokeRVAdapter(getActivity(), jokeDetails);
+        mJokeRVAdapter.setOnItemClickListener(this);
+        mRVFunnyPicture.setAdapter(mJokeRVAdapter);
         mRVFunnyPicture.setLayoutManager(linearLayoutManager);
     }
 
     public void loadDataByTag(String tag){
-        RetrofitThing.getInstance().onFunnyPicResponse(new SubscriberByTag(tag, PictureFragment.this));
+        RetrofitThing.getInstance().onJokeResponse(new SubscriberByTag(tag, JokeFragment.this));
     }
 
     @Override
@@ -131,13 +128,13 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
         mRVFunnyPicture.setVisibility(View.VISIBLE);
         switch (tag){
             case "init":
-                Toast.makeText(getActivity(),"init完成: " + funnyPicDetails.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"init完成: " + jokeDetails.size(), Toast.LENGTH_SHORT).show();
                 break;
             case "loadMore":
-                Toast.makeText(getActivity(),"loadMore完成: " + funnyPicDetails.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"loadMore完成: " + jokeDetails.size(), Toast.LENGTH_SHORT).show();
                 break;
             case "refresh":
-                Toast.makeText(getActivity(),"refresh完成: " + funnyPicDetails.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"refresh完成: " + jokeDetails.size(), Toast.LENGTH_SHORT).show();
                 mSRefresh.setRefreshing(false);
                 break;
         }
@@ -156,11 +153,7 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
                 break;
             case "refresh":
                 mSRefresh.setRefreshing(false);
-                try {
-                    ((ContentShowActivity)getActivity()).showRefreshFailedPrompt();
-                } catch (Exception e1) {
-                    Log.e("errorShow", e1.getMessage());
-                }
+                ((ContentShowActivity)getActivity()).showRefreshFailedPrompt();
                 break;
         }
 
@@ -168,7 +161,7 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
 
     @Override
     public void onNext(String tag, Object o) {
-        if(o==null||((FunnyPicData)o).result.isEmpty()){
+        if(o==null||((JokeData)o).result.isEmpty()){
             Toast.makeText(getActivity(),"没有数据了",Toast.LENGTH_SHORT).show();
         }else{
             switch (tag){
@@ -176,44 +169,44 @@ public class PictureFragment extends Fragment implements SubscriberByTag.onSubsc
                 //初始化数据
                 case "init":
                     //向funnyPicDetails中填充数据
-                    funnyPicDetails.clear();
-                    for(FunnyPicDetail detail : ((FunnyPicData)o).result){
-                        funnyPicDetails.add(detail);
+                    jokeDetails.clear();
+                    for(JokeDetail detail : ((JokeData)o).result){
+                        jokeDetails.add(detail);
                     }
 
                     //刷新RecyclerView数据
-                    mPictureRVAdapter.notifyDataSetChanged();
+                    mJokeRVAdapter.notifyDataSetChanged();
                     break;
 
                 //加载更多
                 case "loadMore":
                     //向funnyPicDetails中添加数据
-                    for(FunnyPicDetail detail : ((FunnyPicData)o).result){
-                        funnyPicDetails.add(detail);
+                    for(JokeDetail detail : ((JokeData)o).result){
+                        jokeDetails.add(detail);
                     }
 
                     //刷新RecyclerView数据
-                    mPictureRVAdapter.notifyDataSetChanged();
+                    mJokeRVAdapter.notifyDataSetChanged();
                     break;
 
                 //刷新数据
                 case "refresh":
                     //获取返回数据集合
-                    List<FunnyPicDetail> details = ((FunnyPicData)o).result;
-                    for(FunnyPicDetail detail : funnyPicDetails){
+                    List<JokeDetail> details = ((JokeData)o).result;
+                    for(JokeDetail detail : jokeDetails){
                         details.add(detail);
                     }
 
                     //清空funnyPicDetails
-                    funnyPicDetails.clear();
+                    jokeDetails.clear();
 
                     //向funnyPicDetails中填充数据
-                    for(FunnyPicDetail detail : details){
-                        funnyPicDetails.add(detail);
+                    for(JokeDetail detail : details){
+                        jokeDetails.add(detail);
                     }
 
                     //刷新RecyclerView数据
-                    mPictureRVAdapter.notifyDataSetChanged();
+                    mJokeRVAdapter.notifyDataSetChanged();
                     break;
             }
         }
