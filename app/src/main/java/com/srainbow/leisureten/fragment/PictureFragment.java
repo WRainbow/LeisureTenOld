@@ -11,16 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.srainbow.leisureten.NetRequest.RetrofitThing;
-import com.srainbow.leisureten.NetRequest.SubscriberByTag;
+import com.srainbow.leisureten.netRequest.RetrofitThing;
+import com.srainbow.leisureten.netRequest.reWriteWay.SubscriberByTag;
 import com.srainbow.leisureten.R;
 import com.srainbow.leisureten.activity.ContentShowActivity;
 import com.srainbow.leisureten.adapter.PictureRVAdapter;
-import com.srainbow.leisureten.custom.Listener.EndlessOnScrollListener;
 import com.srainbow.leisureten.custom.interfaces.OnTVInRvClickToDoListener;
 import com.srainbow.leisureten.data.APIData.FunnyPicData;
 import com.srainbow.leisureten.data.APIData.FunnyPicDetail;
@@ -36,7 +34,7 @@ import butterknife.ButterKnife;
  * Use the {@link PictureFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PictureFragment extends Fragment implements SubscriberByTag.onSubscriberByTagListener,
+public class PictureFragment extends BaseFragment implements SubscriberByTag.onSubscriberByTagListener,
         OnTVInRvClickToDoListener, View.OnClickListener{
 
     private LinearLayoutManager linearLayoutManager;

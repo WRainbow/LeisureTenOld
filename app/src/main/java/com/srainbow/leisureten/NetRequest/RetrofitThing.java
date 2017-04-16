@@ -1,5 +1,8 @@
-package com.srainbow.leisureten.NetRequest;
+package com.srainbow.leisureten.netRequest;
 
+
+import com.srainbow.leisureten.netRequest.reWriteWay.SubscriberByTag;
+import com.srainbow.leisureten.util.Constant;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -11,12 +14,12 @@ import rx.schedulers.Schedulers;
  * Created by SRainbow on 2016/9/29.
  */
 public class RetrofitThing {
-    public static RequestApi requestApi;
+    public volatile static RequestApi requestApi;
 
-    public RequestApi getRequestApi(){
-        if(requestApi==null){
+    public RequestApi getRequestApi(String baseUrl){
+        if(requestApi == null){
             Retrofit retrofit=new Retrofit.Builder()
-                    .baseUrl("http://v.juhe.cn/")
+                    .baseUrl(baseUrl)
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
@@ -26,7 +29,7 @@ public class RetrofitThing {
     }
 
     public void onFunnyPicResponse(SubscriberByTag subscriber){
-        getRequestApi().getFunnyPicData("b3c10341bc734b752fa7cb47b1fb0641")
+        getRequestApi(Constant.BASERURL_JUHU).getFunnyPicData("b3c10341bc734b752fa7cb47b1fb0641")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,7 +37,15 @@ public class RetrofitThing {
     }
 
     public void onJokeResponse(SubscriberByTag subscriber){
-        getRequestApi().getJokeData("b3c10341bc734b752fa7cb47b1fb0641")
+        getRequestApi(Constant.BASERURL_JUHU).getJokeData("b3c10341bc734b752fa7cb47b1fb0641")
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void onShowApiPicClassificationResponse(SubscriberByTag subscriber){
+        getRequestApi(Constant.BASEURL_PICCLASSIFICATIONURL).getShowApiPicData(Constant.SHOWAPI_APPID, Constant.SHOWAPI_SIGN)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

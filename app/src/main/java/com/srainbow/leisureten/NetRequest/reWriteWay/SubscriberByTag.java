@@ -1,4 +1,4 @@
-package com.srainbow.leisureten.NetRequest;
+package com.srainbow.leisureten.netRequest.reWriteWay;
 
 import rx.Subscriber;
 

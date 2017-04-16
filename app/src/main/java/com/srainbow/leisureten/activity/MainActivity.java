@@ -2,9 +2,7 @@ package com.srainbow.leisureten.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.srainbow.leisureten.R;
 import com.srainbow.leisureten.widget.RectangleImageView;
@@ -30,8 +28,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     RectangleImageView mOtherRectIvItem5;//默认为猎奇
     @Bind(R.id.main_other_cv_item6)
     RectangleImageView mOtherRectIvItem6;//默认为服装
-    @Bind(R.id.main_classification_more_tv)
-    TextView mTvMoreClassification;//更多分类
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,49 +46,72 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mOtherRectIvItem4.setOnClickListener(this);
         mOtherRectIvItem5.setOnClickListener(this);
         mOtherRectIvItem6.setOnClickListener(this);
-        mTvMoreClassification.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, ContentShowActivity.class);
+        Intent intent;
         switch (view.getId()){
             case R.id.main_happy_cv_item1:
+                intent = new Intent(MainActivity.this, ContentShowActivity.class);
                 intent.putExtra("classificationName", mHappyRectIvItem1.getImgText());
                 startActivity(intent);
                 break;
             case R.id.main_happy_cv_item2:
+                intent = new Intent(MainActivity.this, ContentShowActivity.class);
                 intent.putExtra("classificationName", mHappyRectIvItem2.getImgText());
                 startActivity(intent);
                 break;
             case R.id.main_other_cv_item1:
-                intent.putExtra("classificationName", mOtherRectIvItem1.getImgText());
+                intent = new Intent(MainActivity.this, DetailClassificationActivity.class);
+                intent.putExtra("classificationName", getCodeString(mOtherRectIvItem1.getImgText()));
                 startActivity(intent);
                 break;
             case R.id.main_other_cv_item2:
-                intent.putExtra("classificationName", mOtherRectIvItem2.getImgText());
+                intent = new Intent(MainActivity.this, DetailClassificationActivity.class);
+                intent.putExtra("classificationName", getCodeString(mOtherRectIvItem2.getImgText()));
                 startActivity(intent);
                 break;
             case R.id.main_other_cv_item3:
-                intent.putExtra("classificationName", mOtherRectIvItem3.getImgText());
+                intent = new Intent(MainActivity.this, DetailClassificationActivity.class);
+                intent.putExtra("classificationName", getCodeString(mOtherRectIvItem3.getImgText()));
                 startActivity(intent);
                 break;
             case R.id.main_other_cv_item4:
-                intent.putExtra("classificationName", mOtherRectIvItem4.getImgText());
+                intent = new Intent(MainActivity.this, DetailClassificationActivity.class);
+                intent.putExtra("classificationName", getCodeString(mOtherRectIvItem4.getImgText()));
                 startActivity(intent);
                 break;
             case R.id.main_other_cv_item5:
-                intent.putExtra("classificationName", mOtherRectIvItem5.getImgText());
+                intent = new Intent(MainActivity.this, DetailClassificationActivity.class);
+                intent.putExtra("classificationName", getCodeString(mOtherRectIvItem5.getImgText()));
                 startActivity(intent);
                 break;
             case R.id.main_other_cv_item6:
-                intent.putExtra("classificationName", mOtherRectIvItem6.getImgText());
+                intent = new Intent(MainActivity.this, DetailClassificationActivity.class);
+                intent.putExtra("classificationName", getCodeString(mOtherRectIvItem6.getImgText()));
                 startActivity(intent);
-                break;
-            case R.id.main_classification_more_tv:
                 break;
             default:
 
         }
+    }
+
+    public String getCodeString(String showString){
+        switch (showString){
+            case "生活":
+                return "生活趣味";
+            case "娱乐":
+                return "娱乐八卦";
+            case "写真":
+                return "美女写真";
+            case "新闻":
+                return "社会百态";
+            case "明星":
+                return "明星写真";
+            case "服装":
+                return "时尚伊人";
+        }
+        return null;
     }
 }

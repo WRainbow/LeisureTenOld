@@ -1,6 +1,10 @@
 package com.srainbow.leisureten.util;
 
-import com.srainbow.leisureten.data.ImgWithAuthor;
+import android.util.Log;
+
+import com.srainbow.leisureten.data.APIData.ImgWithAuthor;
+import com.srainbow.leisureten.data.APIData.TagDetail;
+import com.srainbow.leisureten.data.APIData.TagData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,26 +35,47 @@ public class HtmlParserWithJSoup {
         return instance;
     }
 
-    public List<String> parserHtmlForTags(){
-        List<String> urlList = new ArrayList<>();
-        try {
-            Document doc = Jsoup.connect(Constant.Address_PICJUMBO).get();
+    public List<TagDetail> parserHtmlForTags(Document doc){
+        List<TagDetail> urlList = new ArrayList<>();
+        if(doc != null){
             Element tags = doc.select("div.footer_tags").first().select("div.container").first();
             Elements tag = tags.select("a");
             for(Element ele : tag){
-                urlList.add(ele.attr("href"));
+                String tagUrl = ele.attr("href");
+                String tagName = ele.text();
+                urlList.add(new TagDetail(tagName, tagUrl));
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
         return urlList;
     }
 
-    public List<ImgWithAuthor> parserHtmlForImgWithAuthor() {
+    public List<TagDetail> parserHtmlForTags(String url){
+        List<TagDetail> urlList = new ArrayList<>();
+        try {
+            Document doc = Jsoup.connect(url).get();
+            if(doc != null){
+                Element tags = doc.select("div.footer_tags").first().select("div.container").first();
+                Elements tag = tags.select("a");
+                for(Element ele : tag){
+                    String tagUrl = ele.attr("href");
+                    String tagName = ele.text();
+                    urlList.add(new TagDetail(tagName, tagUrl));
+                }
+            }else{
+                Log.e("msg", "null");
+            }
+        } catch (IOException e) {
+            urlList.add(new TagDetail("error", e.getMessage()));
+        }
+        Log.e("msg", "parserHtml Over");
+        return urlList;
+    }
+
+    public List<ImgWithAuthor> parserHtmlForImgWithAuthor(String url) {
         List<ImgWithAuthor> imgWithAuthorList = new ArrayList<>();
-        if (parserHtmlForTags().size() > 0) {
+        if (url != null) {
             try {
-                Document doc = Jsoup.connect(parserHtmlForTags().get(0)).get();
+                Document doc = Jsoup.connect(url).get();
                 Element content = doc.select("div.container").select("div.sticky_wrap")
                         .select("div.content").first();
                 Elements items = content.select("div.item_wrap");

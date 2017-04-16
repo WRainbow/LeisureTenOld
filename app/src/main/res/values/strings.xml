@@ -2,20 +2,21 @@
     <string name="app_name">LeisureTen</string>
     <string name="HappyArea">开心十分</string>
     <string name="ClassificationMore">更多分类</string>
-    <string name="ClassificationOther">其他分类</string>
-    <string name="funnyPicture">趣 图</string>
-    <string name="joke">笑 话</string>
-    <string name="food">美  食</string>
-    <string name="animal">动 物</string>
-    <string name="clothes">服 装</string>
-    <string name="wedding">婚 纱</string>
-    <string name="news">社 会</string>
-    <string name="adventure">猎 奇</string>
-    <string name="temperament">气 质</string>
+    <string name="BeautifulCollection">美图大全</string>
+    <string name="funnyPicture">趣图</string>
+    <string name="joke">笑话</string>
+    <string name="entertainment">娱乐</string>
+    <string name="life">生活</string>
+    <string name="clothes">服装</string>
+    <string name="photo">写真</string>
+    <string name="news">新闻</string>
+    <string name="star">明星</string>
+    <string name="temperament">气质</string>
     <string name="pullLoadMore">点击加载更多</string>
     <string name="dropFresh">下拉刷新</string>
     <string name="loadFailed">哎呀，数据跑丢了……</string>
     <string name="refreshFailed">请检查网络后再重试刷新</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

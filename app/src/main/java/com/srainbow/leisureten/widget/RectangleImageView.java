@@ -62,6 +62,7 @@ public class RectangleImageView extends AppCompatImageView {
         mPaint.setAntiAlias(true);
         mTextPaint = new TextPaint();
         mTextPaint.setAntiAlias(true);
+        mTextPaint.setTextSize(30);
     }
 
     @Override
@@ -115,7 +116,7 @@ public class RectangleImageView extends AppCompatImageView {
             mPaint.setXfermode(null);
             canvas.drawBitmap(bitmap, 0.0f, 0.0f, mPaint);
         }
-        if(mText != null && !mText.equals(" ")){
+        if(mText != null && !mText.equals("")){
             mTextPaint.setTextSize(bitmap.getWidth() / 5);
             int mWidth = bitmap.getWidth();
             int mHeight = bitmap.getHeight();

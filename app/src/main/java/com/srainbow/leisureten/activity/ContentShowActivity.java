@@ -42,13 +42,13 @@ public class ContentShowActivity extends BaseActivity {
 
     public void initViews(){
         switch (classification){
-            case "趣 图":
+            case "趣图":
                 mPictureFragment = PictureFragment.newInstance();
                 mTransaction = getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_showfragment_fl, mPictureFragment);
                 mTransaction.commit();
                 break;
-            case "笑 话":
+            case "笑话":
                 mJokeFragment = JokeFragment.newInstance();
                 mTransaction = getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_showfragment_fl, mJokeFragment);

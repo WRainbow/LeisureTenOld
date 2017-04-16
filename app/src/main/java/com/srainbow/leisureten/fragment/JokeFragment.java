@@ -14,15 +14,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.srainbow.leisureten.NetRequest.RetrofitThing;
-import com.srainbow.leisureten.NetRequest.SubscriberByTag;
+import com.srainbow.leisureten.netRequest.RetrofitThing;
+import com.srainbow.leisureten.netRequest.reWriteWay.SubscriberByTag;
 import com.srainbow.leisureten.R;
 import com.srainbow.leisureten.activity.ContentShowActivity;
 import com.srainbow.leisureten.adapter.JokeRVAdapter;
-import com.srainbow.leisureten.adapter.PictureRVAdapter;
 import com.srainbow.leisureten.custom.interfaces.OnTVInRvClickToDoListener;
-import com.srainbow.leisureten.data.APIData.FunnyPicData;
-import com.srainbow.leisureten.data.APIData.FunnyPicDetail;
 import com.srainbow.leisureten.data.APIData.JokeData;
 import com.srainbow.leisureten.data.APIData.JokeDetail;
 
@@ -35,7 +32,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class JokeFragment extends Fragment implements SubscriberByTag.onSubscriberByTagListener,
+public class JokeFragment extends BaseFragment implements SubscriberByTag.onSubscriberByTagListener,
         OnTVInRvClickToDoListener, View.OnClickListener{
 
     private LinearLayoutManager linearLayoutManager;

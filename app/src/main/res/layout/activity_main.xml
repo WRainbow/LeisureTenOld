@@ -75,8 +75,9 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:textSize="15sp"
-            android:text="@string/ClassificationOther"
+            android:text="@string/BeautifulCollection"
             tools:layout_editor_absoluteX="15dp" />
+        <!--
         <TextView
             android:id="@+id/main_classification_more_tv"
             android:layout_width="wrap_content"
@@ -85,6 +86,7 @@
             app:layout_constraintTop_toTopOf="@id/main_classification_other_tv"
             android:layout_marginEnd="15dp"
             android:text="@string/ClassificationMore"/>
+            !-->
         <android.support.v7.widget.CardView
             android:id="@+id/main_classification_other_cv"
             android:layout_width="0dp"
@@ -116,14 +118,14 @@
                         android:layout_height="80dp"
                         android:layout_marginStart="15dp"
                         android:src="@drawable/ic_animal"
-                        app:imgText="@string/animal"/>
+                        app:imgText="@string/life"/>
                     <com.srainbow.leisureten.widget.RectangleImageView
                         android:id="@+id/main_other_cv_item2"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_food"
-                        app:imgText="@string/food"/>
+                        android:src="@drawable/ic_poster"
+                        app:imgText="@string/entertainment"/>
                     <com.srainbow.leisureten.widget.RectangleImageView
                         android:id="@+id/main_other_cv_item3"
                         android:layout_width="80dp"
@@ -131,7 +133,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="15dp"
                         android:src="@drawable/ic_wedding"
-                        app:imgText="@string/wedding"/>
+                        app:imgText="@string/photo"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/main_other_cv_rl2"
@@ -152,7 +154,7 @@
                         android:layout_height="80dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_adventure"
-                        app:imgText="@string/adventure"/>
+                        app:imgText="@string/star"/>
                     <com.srainbow.leisureten.widget.RectangleImageView
                         android:id="@+id/main_other_cv_item6"
                         android:layout_width="80dp"
