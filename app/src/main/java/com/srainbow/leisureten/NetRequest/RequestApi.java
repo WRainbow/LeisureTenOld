@@ -1,4 +1,4 @@
-package com.srainbow.leisureten.netRequest;
+package com.srainbow.leisureten.NetRequest;
 
 
 import com.srainbow.leisureten.data.APIData.FunnyPicData;

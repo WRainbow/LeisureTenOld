@@ -12,8 +12,8 @@ import com.srainbow.leisureten.R;
 import com.srainbow.leisureten.data.APIData.ShowApiPicClassificationData;
 import com.srainbow.leisureten.data.APIData.ShowApiPicClassificationDetail;
 import com.srainbow.leisureten.data.APIData.TagDetail;
-import com.srainbow.leisureten.netRequest.RetrofitThing;
-import com.srainbow.leisureten.netRequest.reWriteWay.SubscriberByTag;
+import com.srainbow.leisureten.NetRequest.RetrofitThing;
+import com.srainbow.leisureten.NetRequest.ReWriteWay.SubscriberByTag;
 import com.srainbow.leisureten.util.Constant;
 import com.srainbow.leisureten.util.HtmlParserWithJSoup;
 

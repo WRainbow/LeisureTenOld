@@ -1,7 +1,7 @@
-package com.srainbow.leisureten.netRequest;
+package com.srainbow.leisureten.NetRequest;
 
 
-import com.srainbow.leisureten.netRequest.reWriteWay.SubscriberByTag;
+import com.srainbow.leisureten.NetRequest.ReWriteWay.SubscriberByTag;
 import com.srainbow.leisureten.util.Constant;
 
 import retrofit2.Retrofit;
